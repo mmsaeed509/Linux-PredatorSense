@@ -1,3 +1,5 @@
+## This is a fork of [PredatorNonSense by kphanipavan](https://github.com/kphanipavan/PredatorNonSense). It is a WIP and is intented to be customized for Acer Predator Helios 300 (2018), ```PH315-51```.
+
 # PredatorNonSense
 Replacement of Acer's Predator Sense™ application for fan control on Linux
 
