@@ -16,9 +16,14 @@
 ## Requirements (Arch Linux):
 * ```python-pyqt5```
 * ```evtest```
-* [pyinstaller](https://aur.archlinux.org/packages/pyinstaller)
+
+## Usage:
+```
+sudo python main.py
+```
 
 ## Build:
+To create an executable, you will need [pyinstaller](https://aur.archlinux.org/packages/pyinstaller).
 ```
 cd PredatorSense
 ```
