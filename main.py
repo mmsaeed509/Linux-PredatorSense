@@ -39,53 +39,65 @@ class MainWindow(QtWidgets.QDialog, Ui_PredatorSense):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
-        self.cb = True if ec_read(int(COOL_BOOST_CONTROL, 0)) == 1 else False
+        self.cb = ec_read(int(COOL_BOOST_CONTROL, 0)) == 1
         if self.cb:
-            self.checkBox.setChecked(True)
-        tempvar = int(ec_read(int(CPU_FAN_MODE_CONTROL, 0)))
-        if tempvar == 84 or tempvar == 00:
+            self.coolboost_checkbox.setChecked(True)
+
+        t = int(ec_read(int(CPU_FAN_MODE_CONTROL, 0)))
+        t1 = False
+
+        if t == 84 or t == 00:
             self.cpuFanMode = PFS.Auto
-            self.radioButton.setChecked(True)
-        elif tempvar == 88:
+            self.cpu_auto.setChecked(True)
+        elif t == 88:
             self.cpuFanMode = PFS.Turbo
-            self.radioButton_3.setChecked(True)
-        elif tempvar == 92 or tempvar == 93:
+            self.cpu_turbo.setChecked(True)
+            t1 = True
+        elif t == 92 or t == 93:
             self.cpuFanMode = PFS.Manual
-            self.radioButton_2.setChecked(True)
+            self.cpu_manual.setChecked(True)
         else:
-            print('FOUND', tempvar)
+            print('FOUND', t)
             print('UNKNOWN VALUE FOUND EXIT at cpu box')
             self.cpuauto()
-        tempvar = int(ec_read(int(GPU_FAN_MODE_CONTROL, 0)))
-        if tempvar == 80 or tempvar == 00:
+
+        t = int(ec_read(int(GPU_FAN_MODE_CONTROL, 0)))
+        t2 = False
+
+        if t == 80 or t == 00:
             self.gpuFanMode = PFS.Auto
-            self.radioButton_4.setChecked(True)
-        elif tempvar == 96:
+            self.gpu_auto.setChecked(True)
+        elif t == 96:
             self.gpuFanMode = PFS.Turbo
-            self.radioButton_5.setChecked(True)
-        elif tempvar == 112:
+            t2 = True
+            self.gpu_turbo.setChecked(True)
+        elif t == 112:
             self.gpuFanMode = PFS.Manual
-            self.radioButton_6.setChecked(True)
+            self.gpu_manual.setChecked(True)
         else:
-            print('FOUND', tempvar)
+            print('FOUND', t)
             print('UNKNOWN VALUE FOUND EXIT at gpu box')
             self.gpuauto()
-        self.radioButton.toggled['bool'].connect(self.cpuauto)
-        self.radioButton_3.toggled.connect(self.cpureeeer)
-        self.radioButton_4.toggled.connect(self.gpuauto)
-        self.radioButton_5.toggled.connect(self.gpureeeer)
-        self.checkBox.clicked['bool'].connect(self.toggleCB)
+
+        if t1 and t2:
+            self.global_turbo.setChecked(True)
+
+        self.cpu_auto.toggled['bool'].connect(self.cpuauto)
+        self.cpu_turbo.toggled.connect(self.cpumax)
+        self.gpu_auto.toggled.connect(self.gpuauto)
+        self.gpu_turbo.toggled.connect(self.gpumax)
+        self.coolboost_checkbox.clicked['bool'].connect(self.toggleCB)
         self.verticalSlider.valueChanged.connect(self.cpumanual)
         self.verticalSlider_2.valueChanged.connect(self.gpumanual)
-        self.radioButton_2.toggled.connect(self.cpusetmanual)
-        self.radioButton_6.toggled.connect(self.gpusetmanual)
-        self.pushButton.clicked.connect(lambda: exit())
+        self.cpu_manual.toggled.connect(self.cpusetmanual)
+        self.gpu_manual.toggled.connect(self.gpusetmanual)
+        self.exit_button.clicked.connect(lambda: exit())
 
-    def cpureeeer(self):
+    def cpumax(self):
         ec_write(int(CPU_FAN_MODE_CONTROL, 0), int(CPU_TURBO_MODE, 0))
         self.cpuFanMode = PFS.Turbo
 
-    def gpureeeer(self):
+    def gpumax(self):
         ec_write(int(GPU_FAN_MODE_CONTROL, 0), int(GPU_TURBO_MODE, 0))
         self.gpuFanMode = PFS.Turbo
 
@@ -98,10 +110,12 @@ class MainWindow(QtWidgets.QDialog, Ui_PredatorSense):
         self.gpuFanMode = PFS.Auto
 
     def toggleCB(self, tog):
-        print('tog')
+        print('CoolBoost Toggle: ', end='')
         if tog:
+            print('On')
             ec_write(int(COOL_BOOST_CONTROL, 0), int(COOL_BOOST_ON, 0))
-        elif not tog:
+        else:
+            print('Off')
             ec_write(int(COOL_BOOST_CONTROL, 0), int(COOL_BOOST_OFF, 0))
 
     def cpumanual(self, level):
@@ -122,21 +136,13 @@ class MainWindow(QtWidgets.QDialog, Ui_PredatorSense):
         ec_write(int(GPU_FAN_MODE_CONTROL, 0), int(GPU_MANUAL_MODE, 0))
         self.gpuFanMode = PFS.Manual
 
-    def fanprofnormal(self):
-        ec_write(int(FAN_PROFILE_CONTROL, 0), int(FAN_PROFILE_NORMAL, 0))
-
-    def fanprofperf(self):
-        ec_write(int(FAN_PROFILE_CONTROL, 0), int(FAN_PROFILE_PERF, 0))
-
-    def fanprofaggr(self):
-        ec_write(int(FAN_PROFILE_CONTROL, 0), int(FAN_PROFILE_AGGR, 0))
-
 
 app = QtWidgets.QApplication([])
 application = MainWindow()
-application.setFixedSize(635, 465)
+application.setFixedSize(635, 465) # Makes the window not resizeable
 app.setStyle('Breeze')
 
+# Dark theme implementation
 palette = QPalette()
 palette.setColor(QPalette.Window, QColor(53, 53, 53))
 palette.setColor(QPalette.WindowText, Qt.white)
@@ -153,7 +159,7 @@ palette.setColor(QPalette.Highlight, QColor(42, 130, 218))
 palette.setColor(QPalette.HighlightedText, Qt.black)
 app.setPalette(palette)
 
-
+# Required for the app to have its icon when bundled with PyInstaller
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
     try:
