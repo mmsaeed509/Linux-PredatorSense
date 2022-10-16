@@ -1,4 +1,4 @@
-# PredatorSense clone for ```PH-315-51-78NP``` to control fan speed.
+# PredatorSense clone for ```PH-315-51-78NP``` to control fan speed on Linux.
 ![Predator Sense](demo.png)
 
 ## Disclaimer:
