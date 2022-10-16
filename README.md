@@ -13,6 +13,9 @@ cd PredatorSense
 ```
 sudo chmod +x ./install.sh && sudo ./install.sh
 ```
+```
+predator-sense
+```
 
 ## This is a fork of [PredatorNonSense by kphanipavan](https://github.com/kphanipavan/PredatorNonSense), customized for ```PH315-51```.
 
