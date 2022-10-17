@@ -29,6 +29,7 @@ predator-sense
 * General UI improvements;
 * Refactored the code for easier maintenance;
 * Dynamically disabled buttons to prevent unexpected behavior;
+* Global fan state is now remembered across sessions;
 
 ## Goals:
 * Make it similar to the Windows version;
