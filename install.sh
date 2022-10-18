@@ -4,25 +4,17 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-echo -e "\033[0;32mInstalling dependencies..."
+echo -e "\033[0;32mInstalling dependencies...\033[0m"
 pacman -Sy evtest python-pyqt5 --noconfirm
 pip install pyinstaller
 echo -e "\033[0;32mDependencies installed. Creating executable..."
 pyinstaller main.spec
 cp dist/main /usr/bin/predator-sense-no-launch
 touch /usr/bin/predator-sense
-echo "#!/usr/bin/env bash" > /usr/bin/predator-sense
-echo "pkexec env DISPLAY=\$DISPLAY XAUTHORITY=\$XAUTHORITY /usr/bin/predator-sense-no-launch" >> /usr/bin/predator-sense
+printf "#!/usr/bin/env bash\npkexec env DISPLAY=\$DISPLAY XAUTHORITY=\$XAUTHORITY /usr/bin/predator-sense-no-launch" > /usr/bin/predator-sense
 chmod +x /usr/bin/predator-sense
 touch /usr/share/applications/predator-sense.desktop
-echo "[Desktop Entry]" > /usr/share/applications/predator-sense.desktop
-echo "Encoding=UTF-8" >> /usr/share/applications/predator-sense.desktop
-echo "Version=1.0" >> /usr/share/applications/predator-sense.desktop
-echo "Type=Application" >> /usr/share/applications/predator-sense.desktop
-echo "Terminal=false" >> /usr/share/applications/predator-sense.desktop
-echo "Exec=/usr/bin/predator-sense" >> /usr/share/applications/predator-sense.desktop
-echo "Name=PredatorSense" >> /usr/share/applications/predator-sense.desktop
-echo "Icon=$HOME/Pictures/predator.png" >> /usr/share/applications/predator-sense.desktop
+printf "[Desktop Entry]\nEncoding=UTF-8\nVersion=1.0\nType=Application\nTerminal=false\nExec=/usr/bin/predator-sense\nName=PredatorSense\nIcon=$HOME/Pictures/predator.png" > /usr/share/applications/predator-sense.desktop
 cp predator.png $HOME/Pictures
 echo -e "\033[0;32mInstalling custom fonts..."
 mkdir -p /usr/local/share/fonts/s
