@@ -1,8 +1,9 @@
-# PredatorSense clone for ```PH315-51-78NP``` to control fan speed on Linux.
+## Predator Sense™ clone for ```PH315-51-78NP``` to control fan speed on Linux. This application is intended for "Acer Predator Helios 300", 2018 model.
 ![Predator Sense](demo.png)
 
 ## Disclaimer:
 * Using this application with other laptops may potentially damage them. Proceed at your discretion. Though it most likely works with other **Acer Predator Helios 300** models.
+* It does **not** work with OpenBSD's root access command port, ```opendoas```. Use ```sudo``` instead when running through a terminal.
 ## Usage: (Arch Linux)
 ```
 git clone https://github.com/mohsunb/PredatorSense.git
@@ -20,7 +21,7 @@ predator-sense
 
 ## This is a fork of [PredatorNonSense by kphanipavan](https://github.com/kphanipavan/PredatorNonSense), customized for ```PH315-51```.
 
-## Current changes:
+## Changes:
 * Added custom font (TT Squares);
 * Removed dysfunctional tabs (keyboard lighting settings, fan profiles, GPU overclock);
 * Added dark theme;
@@ -31,7 +32,4 @@ predator-sense
 * Dynamically disabled buttons to prevent unexpected behavior;
 * Global fan state is now remembered across sessions;
 
-## Goals:
-* Make it similar to the Windows version;
-* Upload to AUR;
-* Possibly rewrite it after understanding how it works properly;
+The app is in a satisfactory state and only thing left to do is changing the install script to be compatible with other distros.
