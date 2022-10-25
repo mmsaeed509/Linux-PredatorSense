@@ -184,7 +184,7 @@ class Ui_PredatorSense(object):
         _translate = QtCore.QCoreApplication.translate
 
         # Window title
-        PredatorSense.setWindowTitle(_translate("PredatorSense", "PredatorSense"))
+        PredatorSense.setWindowTitle(_translate("PredatorSense", "Predator Sense™"))
 
         # Tab name
         self.fan_control_tab.setTabText(self.fan_control_tab.indexOf(self.tab), _translate("PredatorSense", "Fan Control"))
