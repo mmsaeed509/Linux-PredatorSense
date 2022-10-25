@@ -4,6 +4,7 @@
 ## Disclaimer:
 * Using this application with other laptops may potentially damage them. Proceed at your discretion. Though it most likely works with other **Acer Predator Helios 300** models.
 * It does **not** work with OpenBSD's root access command port, ```opendoas```. Use ```sudo``` instead when running through a terminal.
+* Application may fail to launch the first time. Opening it the again will fix it.
 ## Usage: (Arch Linux)
 ```
 git clone https://github.com/mohsunb/PredatorSense.git
