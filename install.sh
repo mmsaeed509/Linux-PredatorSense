@@ -14,7 +14,7 @@ touch /usr/bin/predator-sense
 printf "#!/usr/bin/env bash\npkexec env DISPLAY=\$DISPLAY XAUTHORITY=\$XAUTHORITY /usr/bin/predator-sense-no-launch" > /usr/bin/predator-sense
 chmod +x /usr/bin/predator-sense
 touch /usr/share/applications/predator-sense.desktop
-printf "[Desktop Entry]\nEncoding=UTF-8\nVersion=1.0\nType=Application\nTerminal=false\nExec=/usr/bin/predator-sense\nName=PredatorSense\nIcon=$HOME/Pictures/predator.png" > /usr/share/applications/predator-sense.desktop
+printf "[Desktop Entry]\nEncoding=UTF-8\nVersion=1.0\nType=Application\nTerminal=false\nExec=/usr/bin/predator-sense\nName=PredatorSense\nComment=Application to control fan speed for Acer Predator Helios 300\nIcon=$HOME/Pictures/predator.png" > /usr/share/applications/predator-sense.desktop
 cp predator.png $HOME/Pictures
 echo -e "\033[0;32mInstalling custom fonts..."
 mkdir -p /usr/local/share/fonts/s
