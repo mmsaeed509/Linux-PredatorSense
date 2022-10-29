@@ -30,7 +30,7 @@ class Ui_PredatorSense(object):
         PredatorSense.setWindowModality(QtCore.Qt.NonModal)
         PredatorSense.resize(640, 465)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(resource_path("predator.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(resource_path("app_icon.ico")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         PredatorSense.setWindowIcon(icon)
         self.fan_control_tab = QtWidgets.QTabWidget(PredatorSense)
         self.fan_control_tab.setGeometry(QtCore.QRect(0, 0, 641, 481))
