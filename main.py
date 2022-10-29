@@ -171,6 +171,6 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 
-application.setWindowIcon(QtGui.QIcon(resource_path('predator.png')))
+application.setWindowIcon(QtGui.QIcon(resource_path('app_icon.ico')))
 application.show()
 sys.exit(app.exec())
