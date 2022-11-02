@@ -4,8 +4,30 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-echo -e "\033[0;32mInstalling dependencies...\033[0m"
-pacman -Sy evtest python-pyqt5 --noconfirm
+. /etc/os-release
+DISTRO=$NAME
+
+if [ $DISTRO == "Ubuntu" ]
+then
+	echo -e "\033[0;32mInstalling dependencies...\033[0m";
+	apt install python3-pip evtest python3-qtpy -y;
+elif [ $DISTRO == "Linux Mint" ]
+then
+	echo -e "\033[0;32mInstalling dependencies...\033[0m";
+	apt install python3-pip evtest python3-qtpy -y;
+elif [ $DISTRO == "Fedora Linux" ]
+then
+	echo -e "\033[0;32mInstalling dependencies...\033[0m";
+	dnf install python-pip evtest python3-pyqt5-sip -y;
+elif [ $DISTRO == "Arch Linux" ]
+then
+	echo -e "\033[0;32mInstalling dependencies...\033[0m";
+	pacman -Sy python-pip evtest python-pyqt5 --noconfirm;
+else
+	printf "This distro was not tested manually. Please install it yourself.\nThe dependencies are Python Py-Qt5 library, evtest and Python PIP.\n";
+	exit;
+fi
+
 pip install pyinstaller
 echo -e "\033[0;32mDependencies installed. Creating executable..."
 pyinstaller main.spec
