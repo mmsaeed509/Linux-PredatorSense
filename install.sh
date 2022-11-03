@@ -18,7 +18,7 @@ then
 elif [ "$DISTRO" = "Fedora Linux" ]
 then
 	echo -e "\033[0;32mInstalling dependencies...\033[0m";
-	dnf install python-pip evtest python3-pyqt5-sip -y;
+	dnf install python-pip evtest PyQt5 -y;
 elif [ "$DISTRO" = "Arch Linux" ]
 then
 	echo -e "\033[0;32mInstalling dependencies...\033[0m";
