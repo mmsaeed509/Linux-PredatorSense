@@ -91,7 +91,7 @@ class MainWindow(QtWidgets.QDialog, Ui_PredatorSense):
         self.verticalSlider_2.valueChanged.connect(self.gpumanual)
         self.cpu_manual.toggled.connect(self.cpusetmanual)
         self.gpu_manual.toggled.connect(self.gpusetmanual)
-        self.exit_button.clicked.connect(lambda: exit())
+        self.exit_button.clicked.connect(lambda: sys.exit(0))
 
     def cpumax(self):
         ec_write(int(CPU_FAN_MODE_CONTROL, 0), int(CPU_TURBO_MODE, 0))
