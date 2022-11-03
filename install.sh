@@ -7,24 +7,24 @@ fi
 . /etc/os-release
 DISTRO=$NAME
 
-if [ $DISTRO == "Ubuntu" ]
+if [ "$DISTRO" = "Ubuntu" ]
 then
 	echo -e "\033[0;32mInstalling dependencies...\033[0m";
 	apt install python3-pip evtest python3-qtpy -y;
-elif [ $DISTRO == "Linux Mint" ]
+elif [ "$DISTRO" = "Linux Mint" ]
 then
 	echo -e "\033[0;32mInstalling dependencies...\033[0m";
 	apt install python3-pip evtest python3-qtpy -y;
-elif [ $DISTRO == "Fedora Linux" ]
+elif [ "$DISTRO" = "Fedora Linux" ]
 then
 	echo -e "\033[0;32mInstalling dependencies...\033[0m";
 	dnf install python-pip evtest python3-pyqt5-sip -y;
-elif [ $DISTRO == "Arch Linux" ]
+elif [ "$DISTRO" = "Arch Linux" ]
 then
 	echo -e "\033[0;32mInstalling dependencies...\033[0m";
 	pacman -Sy python-pip evtest python-pyqt5 --noconfirm;
 else
-	printf "This distro was not tested manually. Please install it yourself.\nThe dependencies are Python Py-Qt5 library, evtest and Python PIP.\n";
+	printf "This distro was not tested manually. Please install it yourself.\nThe dependencies are Python Py-Qt5 library, evtest and Python PIP.\nYour distro was detected as $DISTRO\n";
 	exit;
 fi
 
