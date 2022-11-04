@@ -15,10 +15,6 @@ elif [ "$DISTRO" = "Linux Mint" ]
 then
 	echo -e "\033[0;32mInstalling dependencies...\033[0m";
 	apt install python3-pip evtest python3-qtpy -y;
-elif [ "$DISTRO" = "Fedora Linux" ]
-then
-	echo -e "\033[0;32mInstalling dependencies...\033[0m";
-	dnf install python-pip evtest PyQt5 -y;
 elif [ "$DISTRO" = "Arch Linux" ]
 then
 	echo -e "\033[0;32mInstalling dependencies...\033[0m";
