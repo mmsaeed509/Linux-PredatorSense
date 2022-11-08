@@ -34,5 +34,3 @@ predator-sense
 * Refactored the code for easier maintenance;
 * Dynamically disabled buttons to prevent unexpected behavior;
 * Global fan state is now remembered across sessions;
-
-The app is in a satisfactory state and only thing left to do is changing the install script to be compatible with other distros.
