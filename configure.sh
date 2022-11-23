@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 if [ "$EUID" -ne 0 ]
-	then echo -e "\033[0;31m./install.sh requires root privileges"
+	then echo -e "\033[0;31m./configure.sh script requires root privileges"
 	exit
 fi
 
