@@ -2,26 +2,43 @@
 ![Predator Sense](demo.png)
 
 ## Disclaimer:
+* This program uses ```ec_sys``` kernel module to function. Check using ```find /lib/modules/$(uname -r) -type f -name '*.ko*' | grep ec_sys```. If it isn't listed, you'll have to rebuild the kernel yourself manually. Arch Linux and Ubuntu do ship the kernel with this module available.
 * Secure Boot is **not** supported.
 * Using this application with other laptops may potentially damage them. Proceed at your discretion. Though it most likely works with other **Acer Predator Helios 300** models.
 * It does **not** work with OpenBSD's root access command port, ```opendoas```. Use ```sudo``` instead when running through a terminal.
-* Application may fail to launch the first time. Opening it again will fix it.
-* Dropped support for Fedora as it ships the kernel without the necessary ```ec_sys``` module enabled. You can, of course, recompile the kernel yourself. But at that point it is probably better to switch to another distro, like Arch. ;)
-## Usage: (Ubuntu, Linux Mint, Arch Linux)
-```
-git clone https://github.com/mohsunb/PredatorSense.git
-```
-```
-cd PredatorSense
-```
-```
-sudo ./install.sh
-```
-```
-predator-sense
-```
-... or use the desktop entry.
 
+## Minimal usage (not recommended):
+Dependencies are ```evtest``` and ***Python Qt5***.
+All you need to do is run the main script as root:
+```
+# python main.py
+```
+***Warning: This will create ```__pycache__``` owned by "root". Use ```sudo rm -rf``` to delete if desired.***
+
+## Full installation:
+Dependencies:
+* Ubuntu / Linux Mint:
+```
+sudo apt install python3-pip evtest python3-qtpy git
+```
+* Arch Linux:
+```
+sudo pacman -S python-pip evtest python-pyqt5 git
+```
+---
+```
+pip install pyinstaller
+```
+```
+git clone https://github.com/mohsunb/PredatorSense.git && cd PredatorSense
+```
+```
+~/.local/bin/pyinstaller main.spec
+```
+```
+sudo ./configure.sh
+```
+---
 ## This is a fork of [PredatorNonSense by kphanipavan](https://github.com/kphanipavan/PredatorNonSense), customized for ```PH315-51```.
 
 ## Changes:
