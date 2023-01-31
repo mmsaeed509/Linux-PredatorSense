@@ -51,7 +51,7 @@ Packages:
 * ```undervolt``` -> [Undervolt by georgewhewell](https://github.com/georgewhewell/undervolt)
 * ```msr-tools``` -> [msr-tools by intel](https://github.com/intel/msr-tools)
 
-## This is a fork of [PredatorSense by mohsunb](https://github.com/mohsunb/PredatorSense), customized for ```PH315-54```
+### This is a fork of [PredatorSense by mohsunb](https://github.com/mohsunb/PredatorSense), customized for ```PH315-52```
 
 ## Changelog:
 Dec 22
